@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  vars:
+    saludo: pacotest 
+  tasks:
+    - name: install apache
+      apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+    - name: modify local file
+      lineinfile:
+        path: /ansible/modificame.txt
+        regexp: '^hola'
+        line: hola si he sido modificado!
+    - name: add line in local file
+      lineinfile:
+        path: /ansible/modificame.txt
+        line: adios!
+        create: yes
+    - name: Ensure group "tests" exists
+      group:
+        name: tests
+        state: present
+    - name: Add the user 'pacotest' with a bash shell, appending the group 'tests' to the user's groups
+      user:
+        name: pacotest
+        shell: /bin/bash
+        groups: tests
+        append: yes
+    - name: Execute the command in remote shell
+      shell: cat /etc/passwd | grep "pacotest" >> modificame.txt
+    - name: Example template
+      template:
+        src: ./test.j2
+        dest: ./saludo.txt

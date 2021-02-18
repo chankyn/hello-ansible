@@ -1,0 +1,9 @@
+version: '3.0'
+services:
+  debian:
+    image: hello-ansible
+    build: .
+    volumes:
+      - ./ansible:/ansible
+    ports:
+      - "80:80"

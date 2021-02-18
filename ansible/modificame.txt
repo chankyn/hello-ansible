@@ -1,0 +1,5 @@
+hola si he sido modificado!
+adios!
+pacotest:x:1000:1001::/home/pacotest:/bin/bash
+pacotest:x:1000:1001::/home/pacotest:/bin/bash
+pacotest:x:1000:1001::/home/pacotest:/bin/bash
